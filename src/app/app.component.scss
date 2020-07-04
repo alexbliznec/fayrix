@@ -1,0 +1,26 @@
+.main-wrapper {
+  height: 60%;
+  width: 80%;
+  margin: 0 auto;
+  
+  .add-button {
+    border: 1px solid #3bb08f;
+    border-radius: 5px;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+
+    span {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+
+  .add-button:hover {
+    background-color: #3bb08f;
+    transition-duration: .2s;
+  }
+}

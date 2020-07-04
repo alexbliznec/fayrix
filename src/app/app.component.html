@@ -1,0 +1,18 @@
+<app-app-info></app-app-info>
+<div class="main-wrapper"> 
+  <app-button
+    [ngStyle]="{'margin': '20px'}"
+    (buttonFunction)="showAddAnimalForm()"
+    content="Add new animal">
+  </app-button>
+  <app-add-animal *ngIf="isFormShown"></app-add-animal>
+  <ag-grid-angular
+    style="margin: auto; height: 100%;"
+    class="ag-theme-alpine"
+    [columnDefs]="colDefs"
+    [rowData]="this.animals$ | async"
+    (firstDataRendered)="onFirstDataRendered($event)"
+    (gridSizeChanged)="onGridSizeChanged($event)"
+  >
+  </ag-grid-angular>
+</div>

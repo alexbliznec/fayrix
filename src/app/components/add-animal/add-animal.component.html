@@ -1,0 +1,29 @@
+<div class="modal-add-animal">
+  <div class="form-wrapper">
+    <form [formGroup]="addAnimalForm" class="add-animal-form">
+      <ng-container *ngFor="let control of controls">
+        <div class="form-group">
+          <label [for]="control">{{control}}:</label>
+          <input
+            type="text"
+            [name]="control"
+            [formControlName]="control"
+            [ngClass]="{'validation-error': addAnimalForm.controls[control].touched && addAnimalForm.controls[control].invalid}">
+            <div [ngStyle]="{'color': 'red', 'font-size': '10px'}"
+              *ngIf="addAnimalForm.controls[control].touched && addAnimalForm.controls[control].invalid">
+              *Заполните поле
+            </div>
+        </div>
+      </ng-container>
+    </form>
+  </div>
+  <div class="add-button">
+    <app-button
+    (buttonFunction)="submitForm()"
+    content="Submit">
+  </app-button>
+  </div>
+</div>
+
+
+
