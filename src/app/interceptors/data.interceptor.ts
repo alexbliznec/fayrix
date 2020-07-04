@@ -3,9 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { DataService } from '../services/data-service/data.service';
 import { IAnimal } from '../config/animals.config';
@@ -19,8 +20,7 @@ export class DataInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.url.includes('deleteRow')) {
-      const deleteReq = request.clone();
-      return next.handle(deleteReq).pipe(
+      return of(new HttpResponse({status: 200})).pipe(
         tap(() => {
           const rowToDelete = this.dataService.animalsData$
             .getValue()
@@ -33,8 +33,7 @@ export class DataInterceptor implements HttpInterceptor {
       )
     }
     if (request.url.includes('updateCell')) {
-      const updateReq = request.clone();
-      return next.handle(updateReq).pipe(
+      return of(new HttpResponse({status: 200})).pipe(
         tap(() => {
           const rowToUpdate = this.dataService.animalsData$
             .getValue()
@@ -47,8 +46,7 @@ export class DataInterceptor implements HttpInterceptor {
       )
     }
     if (request.url.includes('addNewAnimal')) {
-      const addAnimalReq = request.clone();
-      return next.handle(addAnimalReq).pipe(
+      return of(new HttpResponse({status: 200})).pipe(
         tap(() => {
           const newAnimal: IAnimal = request.body;
           this.dataService.animalsData$.next([newAnimal, ...this.dataService.animalsData$.getValue()]);

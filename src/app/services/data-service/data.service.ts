@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { BehaviorSubject} from 'rxjs';
 import { map } from 'rxjs/operators'
 import { IAnimal } from 'src/app/config/animals.config';
@@ -31,7 +31,7 @@ export class DataService {
       fieldName: params.colDef.field,
       animalId: params.data.animalId,
       value: params.newValue
-    }
+    };
     return this.httpService.patch('updateCell', body)
       .subscribe();
   }
