@@ -23,6 +23,8 @@ export class DeleteButtonComponent implements ICellRendererAngularComp {
   }
 
   deleteCurrentRow() {
-    this.dataService.deleteRow(this.params.data.animalId);
+    if (confirm('Удалить?')) {
+      return this.dataService.deleteRow(this.params.data.animalId);
+    }
   }
 }
